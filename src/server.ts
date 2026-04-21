@@ -1,6 +1,7 @@
 import * as http from "http";
 import {getFilterEpisodes, getListEpisodes} from "./controller/podcast-Controller"
 import { Routes } from "./routes/podcastRoutes";
+import { HttpMetod } from "./utils/podcast-HttpMethod";
 
 
 const server = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
@@ -8,9 +9,9 @@ const server = http.createServer((req: http.IncomingMessage, res: http.ServerRes
     const [baseUrl, QueryString] = req.url?.split("?") ?? ("");
 
 
-    if(req.method === "GET" && baseUrl === Routes.LIST){
+    if(req.method === HttpMetod.GET && baseUrl === Routes.LIST){
         getListEpisodes(req, res);    }
-    if(req.method === "GET" && baseUrl === Routes.FILTER){
+    if(req.method === HttpMetod.GET && baseUrl === Routes.FILTER){
         getFilterEpisodes(req, res);    }
 }
 )
